@@ -8,7 +8,7 @@ LDFLAGS = -lSystem \
 default: ${BUILD}
 	as -o ${BUILD}/hello.o hello.s && \
 		ld ${LDFLAGS} -o ${BUILD}/hello ${BUILD}/hello.o && \
-		echo 'run ${BUILD}/hello'
+		${BUILD}/hello
 
 
 ${BUILD}:
