@@ -4,7 +4,7 @@
 
 _start:
     mov     x0, #1      // fd := STDOUT_FILENO
-    adr     x1, msg    // buf := msg
+    adr     x1, msg    // buf := msg; ldr crashed
     mov     x2, #14
     mov     x16, #4     // write is syscall #64
     svc     #128          // invoke syscall
