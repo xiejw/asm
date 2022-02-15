@@ -5,11 +5,17 @@ LDFLAGS = -lSystem \
 	-e _start \
 	-arch arm64
 
-default: ${BUILD}
-	as -o ${BUILD}/hello.o hello.s && \
-		ld ${LDFLAGS} -o ${BUILD}/hello ${BUILD}/hello.o && \
-		${BUILD}/hello
+default: ${BUILD}/hello
+	${BUILD}/hello
 
+${BUILD}/hello: ${BUILD}/hello.o
+	ld ${LDFLAGS} -o ${BUILD}/hello ${BUILD}/hello.o
+
+${BUILD}/hello.o: ${BUILD} hello.s
+	as -o ${BUILD}/hello.o hello.s
 
 ${BUILD}:
 	@mkdir -p ${BUILD}
+
+clean:
+	rm -rf ${BUILD}
